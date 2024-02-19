@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { SignCard } from "../components/SignCard";
 export default function Registration() {
@@ -5,6 +6,7 @@ export default function Registration() {
     <div>
       <Header />
       <SignCard />
+      <Footer />
     </div>
   );
 }
