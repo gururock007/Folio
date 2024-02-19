@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import dark from "../assets/dark.png";
 import light from "../assets/light.png";
+import { NavButton } from "./NavButton";
+import { SecondaryButton } from "./SecondaryButton";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -30,33 +32,21 @@ const Header = () => {
       <nav className="bg-background p-4">
         <div className="grid grid-cols-2 items-center">
           <div className="flex items-center" onClick={() => navigate("/")}>
-            <img src={isDark ? dark : light} alt="Logo" className="h-8 w-8" />
-            <span className="text-text text-xl font-bold ml-2">Folio</span>
+            <img src={isDark ? dark : light} alt="Logo" className="h-12 w-12" />
+            <span className="text-text text-3xl font-bold ml-2">Folio</span>
           </div>
-          <ul className="flex justify-end space-x-16">
-            <li
-              onClick={() => navigate("/")}
-              className="bg-secondary cursor-pointer text-primary px-4 py-2 transition duration-300 ease-in-out hover:text-background rounded-md self-center"
-            >
-              Home
+          <ul className=" grid grid-cols-9 gap-2">
+            <li className=" col-span-2 text-center">
+              <NavButton text={'Home'} location={'/'} />
             </li>
-            <li
-              onClick={() => navigate("/books")}
-              className="text-text cursor-pointer self-center"
-            >
-              Books
+            <li className=" col-span-2 text-center">
+              <NavButton text={'Books'} location={'/Books'} />
             </li>
-            <li
-              onClick={() => navigate("/lists")}
-              className="text-text cursor-pointer self-center"
-            >
-              Lists
+            <li className=" col-span-2 text-center">
+              <NavButton text={'Lists'} location={'/lists'} />
             </li>
-            <li
-              onClick={() => navigate("/login")}
-              className="bg-primary cursor-pointer text-secondary px-4 py-2 transition duration-300 ease-in-out hover:text-background rounded-md"
-            >
-              Login
+            <li className=" col-span-2 text-center"> 
+              <SecondaryButton text={'Login'} location={'login'} />
             </li>
             <label className="inline-flex items-center cursor-pointer">
               <input

@@ -1,18 +1,20 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
-export const PrimaryButton = ({text}) => {
+export const NavButton = ({text, location}) => {
+    const navigate = useNavigate();
   return (
     <div className=''>
        <div
-              onClick={() => navigate("/")}
+              onClick={() => navigate(`/${location}`)}
               className="
-              bg-secondary cursor-pointer 
+             hover:bg-secondary cursor-pointer 
               text-primary px-4 py-2 transition 
               duration-300 ease-in-out hover:text-background 
               rounded-md self-center"
             >
               {text}
-            </div>
+        </div>
     </div>
   )
 }
