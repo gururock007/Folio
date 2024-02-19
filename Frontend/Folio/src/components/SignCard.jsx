@@ -2,7 +2,7 @@ import { NavButton } from "./NavButton";
 import sign from "/images/sign.png";
 export const SignCard = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-primary to-secondary">
+    <div className="flex items-center justify-center min-h-screen  p-16 bord">
       <div className="w-1/2 p-8">
         <img src={sign} alt="Illustration" className="w-full h-auto" />
       </div>

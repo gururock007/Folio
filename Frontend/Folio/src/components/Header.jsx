@@ -31,19 +31,19 @@ const Header = () => {
     <div>
       <nav className="bg-background p-4">
         <div className="grid grid-cols-2 items-center">
-          <div className="flex items-center" onClick={() => navigate("/")}>
+          <a className="flex items-center cursor-pointer"   onClick={() => navigate("/")}>
             <img src={isDark ? dark : light} alt="Logo" className="h-12 w-12" />
             <span className="text-text text-3xl font-bold ml-2">Folio</span>
-          </div>
+          </a>
           <ul className=" grid grid-cols-9 gap-2">
             <li className=" col-span-2 text-center">
-              <NavButton text={"Home"} location={"/"} />
+              <NavButton text={"Home"} location={""} />
             </li>
             <li className=" col-span-2 text-center">
-              <NavButton text={"Books"} location={"/Books"} />
+              <NavButton text={"Books"} location={"books"} />
             </li>
             <li className=" col-span-2 text-center">
-              <NavButton text={"Lists"} location={"/lists"} />
+              <NavButton text={"Lists"} location={"lists"} />
             </li>
             <li className=" col-span-2 text-center">
               <SecondaryButton text={"Login"} location={"login"} />
