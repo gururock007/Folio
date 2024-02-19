@@ -17,7 +17,7 @@ export const Hero = () => {
               for Beautiful design
             </div>
             <div className=" col-span-2 mx-16 py-5">
-              <PrimaryButton props={{ text: "Sign up" }} />
+              <PrimaryButton text = {'hello'}/>
             </div>
           </div>
         </div>
