@@ -3,7 +3,7 @@ import React from 'react'
 export const PrimaryButton = ({text}) => {
   return (
     <div>
-        {text}
+        <div className=' bg-primary'>text</div>
     </div>
   )
 }
