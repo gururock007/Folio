@@ -31,7 +31,7 @@ const Header = () => {
         <div className="grid grid-cols-2 items-center">
           <div className="flex items-center" onClick={() => navigate("/")}>
             <img src={isDark ? dark : light} alt="Logo" className="h-8 w-8" />
-            <span className="text-white text-xl font-bold ml-2">Folio</span>
+            <span className="text-text text-xl font-bold ml-2">Folio</span>
           </div>
           <ul className="flex justify-end space-x-16">
             <li

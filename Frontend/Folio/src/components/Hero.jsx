@@ -3,7 +3,7 @@ import { PrimaryButton } from "./PrimaryButton";
 export const Hero = () => {
   return (
     <>
-      <div className=" text-white">
+      <div className=" text-text">
         <div className=" container">
           <div className=" grid grid-cols-3 pb-12 pt-4">
             <div className=" col-span-2 py-16 mx-16 font-semibold">
