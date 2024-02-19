@@ -1,4 +1,4 @@
-import { PrimaryButton } from "./PrimaryButton";
+import { NavButton } from "./NavButton";
 import sign from "/images/sign.png";
 export const SignCard = () => {
   return (
@@ -32,7 +32,7 @@ export const SignCard = () => {
           className="w-full bg-white p-3 mb-4 rounded-md"
         />
 
-        <PrimaryButton text={"Sign Up"}></PrimaryButton>
+        <NavButton text={"Sign Up"} location={"/"}></NavButton>
 
         {/* Gmail OAuth button */}
         <button className="bg-accent text-white p-3 rounded-md mt-4 w-full">
