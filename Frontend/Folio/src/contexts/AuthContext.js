@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { auth, GoogleAuthProvider } from "../../firebase.config";
+import { auth, provider } from "../../firebase.config";
 import PropTypes from "prop-types";
 
 AuthProvider.propTypes = {
@@ -8,11 +8,11 @@ AuthProvider.propTypes = {
 
 const AuthContext = React.createContext();
 
-export function useAuth() {
+function useAuth() {
   return useContext(AuthContext);
 }
 
-export function AuthProvider({ children }) {
+function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
@@ -30,7 +30,7 @@ export function AuthProvider({ children }) {
   }
 
   function loginWithGoogle() {
-    return auth.signInWithPopup(GoogleAuthProvider);
+    return auth.signInWithPopup(provider);
   }
 
   function logout() {
@@ -75,3 +75,5 @@ export function AuthProvider({ children }) {
     !loading && children
   );
 }
+
+export { useAuth, AuthProvider };

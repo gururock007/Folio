@@ -1,7 +1,7 @@
 import { NavButton } from "./NavButton";
 import { SecondaryButton } from "./SecondaryButton";
 
-export const Hero = () => {
+export const Features = () => {
   return (
     <>
       <div className=" text-text pt-44">
@@ -9,16 +9,11 @@ export const Hero = () => {
           <div className=" grid grid-cols-3 pb-12 pt-4">
             <div className=" col-span-2 py-16 mx-16 font-semibold">
               <div className=" text-5xl font-Poppins ">
-                Introducing{" "}
-                <p className="bg-gradient-to-br from-primary to-accent">
-                  Folio
-                </p>
-                <br />
-                where books and passions flow
+                Have Personalized Recommendations For Books
               </div>
             </div>
             <div className=" col-span-2 mx-16  font-light">
-              Especially designed for bibliophiles and book enthusiasts
+              this is another Dummy text From the UI Designer
               <br />
               for Beautiful design
             </div>
