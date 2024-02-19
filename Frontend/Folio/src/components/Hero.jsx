@@ -7,14 +7,10 @@ export const Hero = () => {
       <div className=" text-text pt-44">
         <div className=" container">
           <div className=" grid grid-cols-3 pb-12 pt-4">
-            <div className=" col-span-2 py-16 mx-16 font-semibold">
-              <div className=" text-5xl font-Poppins ">
-                Introducing{" "}
-                <p className="bg-gradient-to-br from-primary to-accent">
-                  Folio
-                </p>
-                <br />
-                where books and passions flow
+            <div className=" col-span-2 pb-4 mx-16 font-semibold">
+              <div className=" text-6xl font-Poppins ">
+                Introducing <span className=" bg-gradient-to-br from-primary to-accent bg-clip-text text-transparent">Folio</span> where
+                books and passions flow
               </div>
             </div>
             <div className=" col-span-2 mx-16  font-light">

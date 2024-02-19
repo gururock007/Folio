@@ -12,6 +12,7 @@ export default {
         'primary': 'var(--primary)',
         'secondary': 'var(--secondary)',
         'accent': 'var(--accent)',
+        'inputfeild':'var(--inputfeild)',
        },   
        fontFamily: {
         Poppins:['"Poppins"'],
