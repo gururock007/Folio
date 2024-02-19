@@ -33,22 +33,22 @@ const Header = () => {
             <img src={isDark ? dark : light} alt="Logo" className="h-8 w-8" />
             <span className="text-white text-xl font-bold ml-2">Folio</span>
           </div>
-          <ul className="flex justify-end space-x-16 ">
+          <ul className="flex justify-end space-x-16">
             <li
               onClick={() => navigate("/")}
-              className="bg-secondary cursor-pointer text-primary px-4 py-2 transition duration-300 ease-in-out hover:text-background rounded-md"
+              className="bg-secondary cursor-pointer text-primary px-4 py-2 transition duration-300 ease-in-out hover:text-background rounded-md self-center"
             >
               Home
             </li>
             <li
               onClick={() => navigate("/books")}
-              className="text-text cursor-pointer"
+              className="text-text cursor-pointer self-center"
             >
               Books
             </li>
             <li
               onClick={() => navigate("/lists")}
-              className="text-text cursor-pointer"
+              className="text-text cursor-pointer self-center"
             >
               Lists
             </li>
