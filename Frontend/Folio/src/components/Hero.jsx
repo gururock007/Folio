@@ -17,7 +17,8 @@ export const Hero = () => {
               </div>
             </div>
             <div className=" col-span-2 mx-16  font-light">
-              Explore vast literary realms with the personalized touch of our cataloging service!
+              Explore vast literary realms with the personalized touch of our
+              cataloging service!
             </div>
             <div className=" col-span-2 mx-16 py-10">
               <div className="grid grid-cols-3">

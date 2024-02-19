@@ -1,12 +1,13 @@
-import React from 'react'
-import { SignCard } from '../components/SignCard'
-import Header from '../components/Header'
+import { SignCard } from "../components/SignCard";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
-export const Login = () => {
+export default function Login() {
   return (
     <div>
-        <Header />
-        <SignCard />
+      <Header />
+      <SignCard />
+      <Footer />
     </div>
-  )
+  );
 }

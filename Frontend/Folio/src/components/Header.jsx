@@ -31,7 +31,10 @@ const Header = () => {
     <div>
       <nav className="bg-background p-4">
         <div className="grid grid-cols-2 items-center">
-          <a className="flex items-center cursor-pointer"   onClick={() => navigate("/")}>
+          <a
+            className="flex items-center cursor-pointer"
+            onClick={() => navigate("/")}
+          >
             <img src={isDark ? dark : light} alt="Logo" className="h-12 w-12" />
             <span className="text-text text-3xl font-bold ml-2">Folio</span>
           </a>
