@@ -8,11 +8,11 @@ export const SignCard = () => {
             <img src={sign} alt="Illustration" className="w-full h-auto" />
           </div>
           <div className="px-8 col-span-2">
-            <h2 className="text-3xl font-bold text-text mb-8 text-center ">Sign Up</h2>
+            <h2 className="text-3xl font-bold text-text mb-8 text-center">Sign Up</h2>
             <input
               type="email"
               placeholder="Email"
-              className="w-full p-3 mb-4 rounded-md bg-inputfeild placeholder:text-text "
+              className="w-full p-3 mb-4 rounded-md bg-inputfeild placeholder:text-text"
             />
             <input
               type="password"
@@ -36,7 +36,7 @@ export const SignCard = () => {
             </div>
             <div className="text-text mt-4 text-center pt-5">
               Already have an account?{" "}
-              <a href="/login" className="underline text-accent">
+              <a href="#" className="underline text-accent">
                 Sign In
               </a>
             </div>
