@@ -1,4 +1,4 @@
-import { PrimaryButton } from "./NavButton";
+import { NavButton } from "./NavButton";
 import { SecondaryButton } from "./SecondaryButton";
 
 export const Hero = () => {
@@ -20,7 +20,7 @@ export const Hero = () => {
             <div className=" col-span-2 mx-16 py-10">
               <div className="grid grid-cols-3">
                   <div className=" w-32 text-center col-span-1">
-                      <PrimaryButton text = {'Get Started'} location={'/'}/>
+                      <NavButton text = {'Get Started'} location={'/'}/>
                   </div>
                 <div className=" col-span-1 w-32 text-center">
                     <SecondaryButton text={'Learn More'} location={'login'}/>

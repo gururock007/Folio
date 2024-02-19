@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import dark from "../assets/dark.png";
-import light from "../assets/light.png";
+import dark from "/images/dark.png";
+import light from "/images/light.png";
 import { NavButton } from "./NavButton";
 import { SecondaryButton } from "./SecondaryButton";
 
