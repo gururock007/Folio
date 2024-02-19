@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-// import Home from "./pages/Home";
-import App from "./App";
+import Home from "./pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import AuthProvider from "./contexts/AuthContext";
 import "./index.css";
@@ -10,7 +9,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       {/* <AuthProvider> */}
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={<Home />} />
       </Routes>
       {/* </AuthProvider> */}
     </BrowserRouter>
