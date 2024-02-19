@@ -1,12 +1,13 @@
-import { SignCard } from "../components/SignCard";
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { LoginCard } from "../components/LoginCard";
 
 export default function Login() {
   return (
     <div>
       <Header />
-      <SignCard />
+      <LoginCard />
       <Footer />
     </div>
   );
