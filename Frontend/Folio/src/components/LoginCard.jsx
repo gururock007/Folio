@@ -14,12 +14,12 @@ export const LoginCard = () => {
           <input
             type="email"
             placeholder="Email"
-            className="w-full p-3 mb-4 rounded-md bg-inputfeild placeholder:text-text"
+            className="w-full p-3 mb-4 rounded-md bg-inputfeild placeholder:text-text text-text"
           />
           <input
             type="password"
             placeholder="Password"
-            className="w-full p-3 mb-4 rounded-md bg-inputfeild placeholder:text-text"
+            className="w-full p-3 mb-4 rounded-md bg-inputfeild placeholder:text-text text-text"
           />
           <div className=" grid grid-cols-2 gap-2">
             <div className=" col-span-1 self-center text-center mt-4">
