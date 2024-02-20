@@ -5,11 +5,12 @@ import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 import Result from "./pages/Result";
 import Book from "./pages/Book";
-import ListPage from "./pages/ListPage";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import "./index.css";
 import { DashBoard } from "./pages/DashBoard";
+import { ListPage } from "./pages/ListPage";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
@@ -21,7 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/dashboard" element={<DashBoard />} />
           <Route path="/results/:slug" element={<Result />} />
           <Route path="/book/:slug" element={<Book />} />
-          <Route path="/list/:slug" element={<ListPage />} />
+          <Route path="/lists" element={<ListPage />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
