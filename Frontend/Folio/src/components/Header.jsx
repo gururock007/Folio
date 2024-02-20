@@ -45,9 +45,6 @@ const Header = () => {
               <NavButton text={"Home"} location={""} />
             </li>
             <li className=" col-span-2 text-center">
-              <NavButton text={"Books"} location={"books"} />
-            </li>
-            <li className=" col-span-2 text-center">
               <NavButton text={"Lists"} location={"lists"} />
             </li>
             {currentUser ? (
