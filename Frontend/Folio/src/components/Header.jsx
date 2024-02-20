@@ -6,7 +6,7 @@ import { NavButton } from "./NavButton";
 import { SecondaryButton } from "./SecondaryButton";
 import { useAuth } from "../contexts/AuthContext";
 const Header = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
 
   const navigate = useNavigate();
   const [isDark, setIsDark] = useState(
@@ -58,9 +58,9 @@ const Header = () => {
               text-primary px-4 py-2 transition 
               duration-300 ease-in-out hover:text-background 
               rounded-md self-center font-Poppins"
-                  onClick={() => console.log(currentUser)}
+                  onClick={() => logout()}
                 >
-                  Profile
+                  Sign Out
                 </button>
               </li>
             ) : (
