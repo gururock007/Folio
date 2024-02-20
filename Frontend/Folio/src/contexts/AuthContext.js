@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { auth, provider } from "../../firebase.config";
+import { auth, emailprovider, gmailprovider } from "../../firebase.config";
 import PropTypes from "prop-types";
 
 AuthProvider.propTypes = {
@@ -17,12 +17,10 @@ function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   function signup(email, password, displayName) {
-    return auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        return user.updateProfile({ displayName });
-      });
+    return emailprovider(email, password).then((userCredential) => {
+      const updatedUser = { ...userCredential.user, displayName };
+      return updatedUser;
+    });
   }
 
   function login(email, password) {
@@ -30,7 +28,7 @@ function AuthProvider({ children }) {
   }
 
   function loginWithGoogle() {
-    return auth.signInWithPopup(provider);
+    return auth.signInWithPopup(gmailprovider);
   }
 
   function logout() {
