@@ -3,12 +3,12 @@ import axios from "axios";
 import { BookCard } from "./BookCard";
 import noimage from "/images/no-image.jpg";
 import { Link } from "react-router-dom";
-import Result from "../pages/Result";
+import { ListComponent } from "./ListComponent";
 export const DashBoardHome = () => {
   const [books, setBooks] = useState([]);
+  const [result, setResult] = useState([]);
   const [searchCriteria, setSearchCriteria] = useState("title");
   const [searchValue, setSearchValue] = useState("");
-
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
   };
@@ -23,10 +23,12 @@ export const DashBoardHome = () => {
         `http://65.0.168.34/search/${searchCriteria}/${searchValue}`
       );
       console.log(response.data);
-      setBooks(response.data.items || []);
+      setResult(response.data.items || []);
     } catch (error) {
       console.error("Error searching books:", error);
     }
+    console.log(`Searching for ${searchCriteria}: ${searchValue}`);
+
   };
 
   useEffect(() => {
@@ -36,7 +38,7 @@ export const DashBoardHome = () => {
           "http://65.0.168.34/search/booksByGenre/love"
         );
         console.log(response.data);
-        <Result url={response} />;
+        setBooks(response.data.items || []);
       } catch (error) {
         console.error("Error fetching books:", error);
       }
@@ -54,7 +56,11 @@ export const DashBoardHome = () => {
               <select
                 value={searchCriteria}
                 onChange={handleCriteriaChange}
-                className="w-full h-12 bg-white self-center rounded-3xl py-2 focus-within:outline-none text-background placeholder:px-10 text-center"
+                className="w-full h-12 bg-white self-center rounded-3xl py-2 focus-within:outline-none text-text placeholder:px-10 text-center"
+                style={{
+                  background: "var(--secondary)",
+                  color: "var(--text)",
+                }}
               >
                 <option value="bookname">Book Name</option>
                 <option value="bookAuthor">Author</option>
@@ -75,6 +81,27 @@ export const DashBoardHome = () => {
             </div>
           </div>
         </div>
+        {
+          result.length != 0 ? <div className="pt-52 px-24">
+          <div className="text-text font-medium p-5">Result</div>
+          <div className="flex overflow-x-scroll py-14">
+            {result.map((resu) => (
+              <Link to={`/book/${resu.id}`} key={resu.id}>
+                <BookCard
+                  key={resu.id}
+                  title={resu.volumeInfo.title}
+                  author={
+                    resu.volumeInfo.authors
+                      ? resu.volumeInfo.authors.join(", ")
+                      : "Unknown Author"
+                  }
+                  liked={Math.floor(Math.random() * 100)} // Example: Random liked value
+                  imageSrc={resu.volumeInfo.imageLinks?.thumbnail || noimage} // Use default image URL if thumbnail not available
+                />
+              </Link>
+            ))}
+          </div>
+        </div>: <div />}
         <div className="py-52 px-24">
           <div className="text-text font-medium p-5">Most People Liked</div>
           <div className="flex overflow-x-scroll py-14">
@@ -96,6 +123,7 @@ export const DashBoardHome = () => {
           </div>
         </div>
       </div>
+      <ListComponent url={"http://65.0.168.34/search/booksByGenre/love"} gener={"Your List"}  />
     </div>
   );
 };
