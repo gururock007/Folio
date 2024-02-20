@@ -1,5 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
-import { auth, emailprovider, gmailprovider } from "../../firebase.config";
+import {
+  auth,
+  emailprovider,
+  signinprovider,
+  gmailprovider,
+} from "../../firebase.config";
 import PropTypes from "prop-types";
 
 AuthProvider.propTypes = {
@@ -24,7 +29,7 @@ function AuthProvider({ children }) {
   }
 
   function login(email, password) {
-    return auth.signInWithEmailAndPassword(email, password);
+    return signinprovider(email, password);
   }
 
   function loginWithGoogle() {

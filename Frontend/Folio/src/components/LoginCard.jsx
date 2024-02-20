@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import loginimg from "/images/login.png";
+import eyeIcon from "/images/eye.png";
+import eyeClosedIcon from "/images/eye-closed.png";
 import { useAuth } from "../contexts/AuthContext";
 import { validateEmail } from "../contexts/regexConditions";
 export const LoginCard = () => {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
   const { login, loginWithGoogle } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,6 +19,10 @@ export const LoginCard = () => {
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
   const handleLogin = async (event) => {
@@ -46,13 +53,17 @@ export const LoginCard = () => {
     <div className=" px-32 py-16 font-Poppins">
       <div className="grid grid-cols-5  bg-opacity-10 shadow-lg backdrop-blur-lg  p-6 pt-16 rounded-3xl">
         <div className=" col-span-3">
-          <img src={loginimg} alt="Illustration" className=" w-full h-auto" />
+          <img src={loginimg} alt="Illustration" className=" w-2/3 h-auto" />
         </div>
-        login
         <div className="px-8 col-span-2">
           <h2 className="text-3xl font-bold text-text mb-8 text-center">
             Login
           </h2>
+          {error && (
+            <div className="bg-red-200 text-red-700 p-2 rounded-md mb-4">
+              {error}
+            </div>
+          )}
           <input
             type="email"
             placeholder="Email"
@@ -61,12 +72,27 @@ export const LoginCard = () => {
             className="w-full p-3 mb-4 rounded-md bg-inputfeild placeholder:text-text text-text"
           />
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Password"
             value={password}
             onChange={handlePasswordChange}
             className="w-full p-3 mb-4 rounded-md bg-inputfeild placeholder:text-text text-text"
           />
+          <div className="eye-icon" onClick={togglePasswordVisibility}>
+            {showPassword ? (
+              <img
+                src={eyeClosedIcon}
+                alt="Hide"
+                className="absolute -right-0 -translate-y-[3.3rem] -translate-x-20 transform cursor-pointer"
+              />
+            ) : (
+              <img
+                src={eyeIcon}
+                alt="Show"
+                className="absolute -right-0 -translate-y-[3.3rem] -translate-x-20 transform cursor-pointer"
+              />
+            )}
+          </div>
           <div className=" grid grid-cols-2 gap-2">
             <div className=" col-span-1 self-center text-center mt-4">
               <button
