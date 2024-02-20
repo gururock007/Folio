@@ -7,12 +7,44 @@ import noimage from "/images/no-image.jpg";
 
 export const BookInfo = ({ book }) => {
   const [liked, setLiked] = useState(false);
-  const changeLikeHandle = () => {
-    setLiked((prevVal) => !prevVal);
-  };
   const [isDark, setIsDark] = useState(
     localStorage.getItem("theme") === "dark"
   );
+
+  useEffect(() => {
+    // Check if the book is liked by the user
+    const checkLikedStatus = async () => {
+      try {
+        const response = await fetch(
+          `http://65.0.168.34/likedbyUser/:email/${book.id}`
+        );
+        const data = await response.json();
+        setLiked(data.liked);
+      } catch (error) {
+        console.error("Error checking liked status:", error);
+      }
+    };
+
+    checkLikedStatus();
+  }, [book.id]);
+
+  const changeLikeHandle = async () => {
+    try {
+      // Toggle like status locally
+      setLiked((prevVal) => !prevVal);
+
+      // Send like/unlike request to the server
+      const action = liked ? "unlikeit" : "likeit";
+      await fetch(
+        `http://65.0.168.34/likedbyUser/${action}/:email/${book.id}`,
+        {
+          method: "POST",
+        }
+      );
+    } catch (error) {
+      console.error("Error updating like status:", error);
+    }
+  };
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");

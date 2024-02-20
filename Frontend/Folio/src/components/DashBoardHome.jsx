@@ -36,7 +36,7 @@ export const DashBoardHome = () => {
           "http://65.0.168.34/search/booksByGenre/love"
         );
         console.log(response.data);
-        <Result url={response} />;
+        <Result url={response} gener="Result" />;
       } catch (error) {
         console.error("Error fetching books:", error);
       }
