@@ -54,11 +54,7 @@ export const DashBoardHome = () => {
               <select
                 value={searchCriteria}
                 onChange={handleCriteriaChange}
-                className="w-full h-12 bg-white self-center rounded-3xl py-2 focus-within:outline-none text-text placeholder:px-10 text-center"
-                style={{
-                  background: "var(--inputfeild)",
-                  color: "var(--text)",
-                }}
+                className="w-full h-12 bg-white self-center rounded-3xl py-2 focus-within:outline-none text-background placeholder:px-10 text-center"
               >
                 <option value="bookname">Book Name</option>
                 <option value="bookAuthor">Author</option>

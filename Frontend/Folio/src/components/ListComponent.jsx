@@ -1,18 +1,16 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { DashBoardHome } from "./DashBoardHome"
 import { BookCard } from "./BookCard";
 import noimage from "/images/no-image.jpg";
-export const ListComponent = () => {
+
+export const ListComponent = ( {url , gener}) => {
   const [books, setBooks] = useState([]);
-
-
   useEffect(() => {
     const fetchBooks = async () => {
       try {
         const response = await axios.get(
-          "http://65.0.168.34/search/booksByGenre/love"
+          url
         );
         console.log(response.data);
         setBooks(response.data.items || []);
@@ -24,8 +22,8 @@ export const ListComponent = () => {
     fetchBooks();
   }, []);
   return (
-    <div className="py-52 px-24">
-    <div className="text-text font-medium p-5 text-3xl">Most People Liked</div>
+    <div className="py-16 px-24">
+    <div className="text-text font-medium p-5 text-3xl">{gener}</div>
     <div className="flex overflow-x-scroll py-14">
       {books.map((book) => (
         <Link to={`/book/${book.id}`} key={book.id}>
