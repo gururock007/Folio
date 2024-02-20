@@ -4,8 +4,10 @@ import dark from "/images/dark.png";
 import light from "/images/light.png";
 import { NavButton } from "./NavButton";
 import { SecondaryButton } from "./SecondaryButton";
-
+import { useAuth } from "../contexts/AuthContext";
 const Header = () => {
+  const { currentUser } = useAuth();
+
   const navigate = useNavigate();
   const [isDark, setIsDark] = useState(
     localStorage.getItem("theme") === "dark"
@@ -48,9 +50,24 @@ const Header = () => {
             <li className=" col-span-2 text-center">
               <NavButton text={"Lists"} location={"lists"} />
             </li>
-            <li className=" col-span-2 text-center">
-              <SecondaryButton text={"Login"} location={"login"} />
-            </li>
+            {currentUser ? (
+              <li className="col-span-2 text-center">
+                <button
+                  className="
+              hover:bg-secondary cursor-pointer 
+              text-primary px-4 py-2 transition 
+              duration-300 ease-in-out hover:text-background 
+              rounded-md self-center font-Poppins"
+                  onClick={() => console.log(currentUser)}
+                >
+                  Profile
+                </button>
+              </li>
+            ) : (
+              <li className="col-span-2 text-center">
+                <SecondaryButton text={"Login"} location={"login"} />
+              </li>
+            )}
             <li className=" self-center col-span-2 text-center">
               <label className="inline-flex items-center cursor-pointer">
                 <input

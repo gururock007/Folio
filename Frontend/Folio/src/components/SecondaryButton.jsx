@@ -10,7 +10,7 @@ export const SecondaryButton = ({ text, location }) => {
               bg-primary cursor-pointer 
               text-secondary px-4 py-2 
               transition duration-300 
-              ease-in-out hover:text-background rounded-md"
+              ease-in-out hover:text-background rounded-md font-Poppins"
       >
         {text}
       </div>
