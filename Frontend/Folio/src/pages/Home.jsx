@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import { PageInfo } from "../components/PageInfo";
 import { DashBoard } from "./DashBoard";
 import { useAuth } from "../contexts/AuthContext";
+import { Book } from "./Book";
 export default function Home() {
   const { currentUser } = useAuth();
   if (currentUser) {
@@ -12,8 +13,9 @@ export default function Home() {
     return (
       <div>
         <Header />
-        <Hero />
-        <PageInfo />
+        {/* <Hero />
+        <PageInfo /> */}
+        <Book />
         <Footer />
       </div>
     );
