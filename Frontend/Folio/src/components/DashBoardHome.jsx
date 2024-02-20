@@ -40,7 +40,7 @@ export const DashBoardHome = () => {
     <div>
       <div className="py-60 font-Poppins">
         <div className="px-60 self-center grid grid-cols-8">
-          <div className="col-span-5 grid grid-cols-8 bg-inputfeild py-2 px-5 rounded-full">
+          <div className="col-span-8 grid grid-cols-8 bg-inputfeild py-2 px-5 rounded-full">
             <div className="col-span-2">
               <select
                 value={searchCriteria}
