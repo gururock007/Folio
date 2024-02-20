@@ -1,4 +1,3 @@
-import React from "react";
 import review from "/images/review.png";
 import personalize from "/images/personalization.png";
 export const PageInfo = () => {

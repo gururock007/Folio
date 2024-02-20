@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { BookCard } from "./BookCard";
 import noimage from "/images/no-image.jpg";
-
+import { Link } from "react-router-dom";
 export const DashBoardHome = () => {
   const [books, setBooks] = useState([]);
   const [searchCriteria, setSearchCriteria] = useState("title");
@@ -45,7 +45,11 @@ export const DashBoardHome = () => {
               <select
                 value={searchCriteria}
                 onChange={handleCriteriaChange}
-                className="w-full h-12 bg-transparent focus-within:outline-none text-text placeholder:px-10"
+                className="w-full h-12 bg-white self-center rounded-3xl py-2 focus-within:outline-none text-text placeholder:px-10 text-center"
+                style={{
+                  background: "var(--inputfeild)",
+                  color: "var(--text)",
+                }}
               >
                 <option value="title">Book Name</option>
                 <option value="id">Book ID</option>
@@ -59,7 +63,7 @@ export const DashBoardHome = () => {
                 placeholder={`Search by ${searchCriteria}`}
                 value={searchValue}
                 onChange={handleSearchChange}
-                className="w-full h-12 bg-transparent focus-within:outline-none text-text placeholder:px-10"
+                className="w-full h-12 bg-transparent focus-within:outline-none text-text placeholder:px-10 text-center"
               />
             </div>
             <div className="col-span-2 self-center bg-white py-2 text-center rounded-3xl">
@@ -77,17 +81,19 @@ export const DashBoardHome = () => {
           <div className="text-text font-medium p-5">Most People Liked</div>
           <div className="flex overflow-x-scroll py-14">
             {books.map((book) => (
-              <BookCard
-                key={book.id}
-                title={book.volumeInfo.title}
-                author={
-                  book.volumeInfo.authors
-                    ? book.volumeInfo.authors.join(", ")
-                    : "Unknown Author"
-                }
-                liked={Math.floor(Math.random() * 100)} // Example: Random liked value
-                imageSrc={book.volumeInfo.imageLinks?.thumbnail || noimage} // Use default image URL if thumbnail not available
-              />
+              <Link to={`/book/${book.id}`} key={book.id}>
+                <BookCard
+                  key={book.id}
+                  title={book.volumeInfo.title}
+                  author={
+                    book.volumeInfo.authors
+                      ? book.volumeInfo.authors.join(", ")
+                      : "Unknown Author"
+                  }
+                  liked={Math.floor(Math.random() * 100)} // Example: Random liked value
+                  imageSrc={book.volumeInfo.imageLinks?.thumbnail || noimage} // Use default image URL if thumbnail not available
+                />
+              </Link>
             ))}
           </div>
         </div>
