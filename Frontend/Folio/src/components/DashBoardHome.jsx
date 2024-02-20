@@ -3,7 +3,6 @@ import axios from "axios";
 import { BookCard } from "./BookCard";
 import noimage from "/images/no-image.jpg";
 import { Link } from "react-router-dom";
-import { ListComponent } from "./ListComponent";
 import { useAuth } from "../contexts/AuthContext"
 export const DashBoardHome = () => {
   const [books, setBooks] = useState([]);
@@ -123,7 +122,7 @@ export const DashBoardHome = () => {
           <div className="text-text font-medium p-5">Our Recommendation</div>
           <div className="flex overflow-x-scroll py-14">
             {recomm.map((rec) => (
-              <Link to={`/book/${rec.id}`} key={rec.id}>
+              <Link to={/book/${rec.id}} key={rec.id}>
                 <BookCard
                   key={resu.id}
                   title={resu.volumeInfo.title}
@@ -162,6 +161,6 @@ export const DashBoardHome = () => {
         </div>
       </div>
       
-    </div>
-  );
+  </div>
+);
 };
