@@ -58,7 +58,7 @@ const ChatBot = () => {
   }, [messages]); // Trigger scroll effect whenever messages update
 
   return (
-    <div className="fixed bottom-0 right-0 mb-8 mr-8" ref={chatbotRef}>
+    <div className="fixed bottom-0 right-0 mb-8 mr-8 z-50" ref={chatbotRef}>
       <button
         className=" bg-primary text-text w-20 h-20 rounded-full shadow-lg hover:bg-accent"
         onClick={toggleChatbot}
