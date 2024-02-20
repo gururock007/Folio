@@ -3,7 +3,7 @@ import axios from "axios";
 import { BookCard } from "./BookCard";
 import noimage from "/images/no-image.jpg";
 import { Link } from "react-router-dom";
-
+import Result from "../pages/Result";
 export const DashBoardHome = () => {
   const [books, setBooks] = useState([]);
   const [searchCriteria, setSearchCriteria] = useState("title");
@@ -36,7 +36,7 @@ export const DashBoardHome = () => {
           "http://65.0.168.34/search/booksByGenre/love"
         );
         console.log(response.data);
-        setBooks(response.data.items || []);
+        <Result url={response} />;
       } catch (error) {
         console.error("Error fetching books:", error);
       }

@@ -1,22 +1,14 @@
-import React from 'react'
-import { BookCard } from './BookCard'
-
-export const SearchResult = () => {
+import { ListComponent } from "./ListComponent";
+import PropTypes from "prop-types";
+export const SearchResult = ({ url, gener }) => {
   return (
-    <div className=' text-text'>
-        <div className=' grid grid-cols-6'>
-            <div className=' col-span-1'>
-                <BookCard
-                            key={1}
-                            title={'book.volumeInfo.title'}
-                            author={
-                            "book.volumeInfo.authors"
-                            }
-                            liked={10} // Example: Random liked value
-                            imageSrc={"book.volumeInfo.imageLinks?.thumbnail || noimage"} // Use default image URL if thumbnail not available
-                        />
-            </div>
-        </div>
+    <div className=" text-text">
+      <ListComponent url={url} gener={gener} />
     </div>
-  )
-}
+  );
+};
+
+SearchResult.propTypes = {
+  url: PropTypes.string.isRequired,
+  gener: PropTypes.string.isRequired,
+};
