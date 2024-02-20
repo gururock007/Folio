@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import login from "/images/login.png";
+import loginimg from "/images/login.png";
 import { useAuth } from "../contexts/AuthContext";
 import { validateEmail } from "../contexts/regexConditions";
 export const LoginCard = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, loginWithGoogle } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -31,12 +31,24 @@ export const LoginCard = () => {
       setError(error.message);
     }
   };
+
+  const handleLoginWithGoogle = async (event) => {
+    event.preventDefault;
+    try {
+      await loginWithGoogle();
+      navigate("/dashboard");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
     <div className=" px-32 py-16 font-Poppins">
       <div className="grid grid-cols-5  bg-opacity-10 shadow-lg backdrop-blur-lg  p-6 pt-16 rounded-3xl">
         <div className=" col-span-3">
-          <img src={login} alt="Illustration" className="w-full h-auto" />
+          <img src={loginimg} alt="Illustration" className=" w-full h-auto" />
         </div>
+        login
         <div className="px-8 col-span-2">
           <h2 className="text-3xl font-bold text-text mb-8 text-center">
             Login
@@ -64,11 +76,14 @@ export const LoginCard = () => {
               rounded-md self-center"
                 onClick={handleLogin}
               >
-                Sign Up{" "}
+                Login
               </button>
             </div>
             <div className=" col-span-1">
-              <button className=" bg-inputfeild text-text p-3 rounded-md mt-4 w-full">
+              <button
+                className=" bg-inputfeild text-text p-3 rounded-md mt-4 w-full "
+                onClick={handleLoginWithGoogle}
+              >
                 Sign Up with Gmail
               </button>
             </div>
