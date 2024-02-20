@@ -12,9 +12,9 @@ export const BookInfo = ({ book }) => {
   const [isDark, setIsDark] = useState(
     localStorage.getItem("theme") === "dark"
   );
+  const [averageRating, setAverageRating] = useState(null);
 
   useEffect(() => {
-    // Check if the book is liked by the user
     const checkLikedStatus = async () => {
       try {
         const response = await fetch(
@@ -30,12 +30,24 @@ export const BookInfo = ({ book }) => {
     checkLikedStatus();
   }, [book.id]);
 
+  useEffect(() => {
+    const fetchAverageRating = async () => {
+      try {
+        const response = await fetch(
+          `http://65.0.168.34/review/getaveragereview/${book.id}`
+        );
+        const data = await response.json();
+        setAverageRating(data.averagePositiveScore);
+      } catch (error) {
+        console.error("Error fetching average rating:", error);
+      }
+    };
+    fetchAverageRating();
+  }, [book.id]);
+
   const changeLikeHandle = async () => {
     try {
-      // Toggle like status locally
       setLiked((prevVal) => !prevVal);
-
-      // Send like/unlike request to the server
       const action = liked ? "unlikeit" : "likeit";
       await fetch(
         `http://65.0.168.34/likedbyUser/${action}/${currentUser.email}/${book.id}`,
@@ -67,9 +79,8 @@ export const BookInfo = ({ book }) => {
         </div>
         <div className="col-span-2 self-center flex gap-2">
           <div className="flex">
-            Ratings: {book?.rating || "Rating Placeholder"}
+            Ratings: {averageRating || "No reviews yet"}
           </div>
-          <div>Star: </div>
         </div>
         <div className="col-span-2 self-center flex gap-2">
           <div className="self-center w-10">
