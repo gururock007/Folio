@@ -4,9 +4,12 @@ import { BookCard } from "./BookCard";
 import noimage from "/images/no-image.jpg";
 import { Link } from "react-router-dom";
 import { ListComponent } from "./ListComponent";
+import { useAuth } from "../contexts/AuthContext"
 export const DashBoardHome = () => {
   const [books, setBooks] = useState([]);
   const [result, setResult] = useState([]);
+  const [recomm, setRecomm] = useState([]);
+  const {currentUser} = useAuth();
   const [searchCriteria, setSearchCriteria] = useState("title");
   const [searchValue, setSearchValue] = useState("");
   const handleSearchChange = (e) => {
@@ -47,6 +50,19 @@ export const DashBoardHome = () => {
     fetchBooks();
   }, []);
 
+  useEffect(() => {
+    const fetchRecomm = async () => {
+      try {
+        const response = await axios.get(
+          `http://65.0.168.34/getuserpreference/${currentUser.email}`
+        );
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching books:", error);
+      }
+    };
+    fetchRecomm();
+  }, []);
   return (
     <div>
       <div className="py-60 font-Poppins">
@@ -102,6 +118,28 @@ export const DashBoardHome = () => {
             ))}
           </div>
         </div>: <div />}
+        {/* {
+          recomm.length != 0 ? <div className="pt-52 px-24">
+          <div className="text-text font-medium p-5">Our Recommendation</div>
+          <div className="flex overflow-x-scroll py-14">
+            {recomm.map((rec) => (
+              <Link to={`/book/${rec.id}`} key={rec.id}>
+                <BookCard
+                  key={resu.id}
+                  title={resu.volumeInfo.title}
+                  author={
+                    resu.volumeInfo.authors
+                      ? resu.volumeInfo.authors.join(", ")
+                      : "Unknown Author"
+                  }
+                  liked={Math.floor(Math.random() * 100)} // Example: Random liked value
+                  imageSrc={resu.volumeInfo.imageLinks?.thumbnail || noimage} // Use default image URL if thumbnail not available
+                />
+              </Link>
+            ))}
+          </div>
+        </div>: <div />
+        } */}
         <div className="py-52 px-24">
           <div className="text-text font-medium p-5">Most People Liked</div>
           <div className="flex overflow-x-scroll py-14">
@@ -123,7 +161,7 @@ export const DashBoardHome = () => {
           </div>
         </div>
       </div>
-      <ListComponent url={"http://65.0.168.34/search/booksByGenre/love"} gener={"Your List"}  />
+      
     </div>
   );
 };
