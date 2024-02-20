@@ -4,8 +4,10 @@ import heart_outline from "/images/heart-outline.png";
 import heart_outline_white from "/images/heart-outline-white.png";
 import heart from "/images/heart.png";
 import noimage from "/images/no-image.jpg";
+import { useAuth } from "../contexts/AuthContext";
 
 export const BookInfo = ({ book }) => {
+  const { currentUser } = useAuth();
   const [liked, setLiked] = useState(false);
   const [isDark, setIsDark] = useState(
     localStorage.getItem("theme") === "dark"
@@ -16,7 +18,7 @@ export const BookInfo = ({ book }) => {
     const checkLikedStatus = async () => {
       try {
         const response = await fetch(
-          `http://65.0.168.34/likedbyUser/:email/${book.id}`
+          `http://65.0.168.34/likedbyUser/${currentUser.email}/${book.id}`
         );
         const data = await response.json();
         setLiked(data.liked);
@@ -36,9 +38,9 @@ export const BookInfo = ({ book }) => {
       // Send like/unlike request to the server
       const action = liked ? "unlikeit" : "likeit";
       await fetch(
-        `http://65.0.168.34/likedbyUser/${action}/:email/${book.id}`,
+        `http://65.0.168.34/likedbyUser/${action}/${currentUser.email}/${book.id}`,
         {
-          method: "POST",
+          method: "GET",
         }
       );
     } catch (error) {
