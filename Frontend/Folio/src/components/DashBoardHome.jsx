@@ -70,12 +70,6 @@ export const DashBoardHome = () => {
               <button onClick={handleSearchSubmit}>Submit</button>
             </div>
           </div>
-          <div className="col-span-1 text-text py-3 px-10 text-xl">or</div>
-          <div className="col-span-2 self-center">
-            <div className="text-text py-3 px-5 bg-primary text-center rounded-3xl">
-              <a href="">try Out Our Chat</a>
-            </div>
-          </div>
         </div>
         <div className="py-52 px-24">
           <div className="text-text font-medium p-5">Most People Liked</div>
