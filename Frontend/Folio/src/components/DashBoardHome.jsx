@@ -3,10 +3,12 @@ import axios from "axios";
 import { BookCard } from "./BookCard";
 import noimage from "/images/no-image.jpg";
 import { Link } from "react-router-dom";
+
 export const DashBoardHome = () => {
   const [books, setBooks] = useState([]);
   const [searchCriteria, setSearchCriteria] = useState("title");
   const [searchValue, setSearchValue] = useState("");
+
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
   };
@@ -15,9 +17,16 @@ export const DashBoardHome = () => {
     setSearchCriteria(e.target.value);
   };
 
-  const handleSearchSubmit = () => {
-    // Implement your search logic here based on searchCriteria and searchValue
-    console.log(`Searching for ${searchCriteria}: ${searchValue}`);
+  const handleSearchSubmit = async () => {
+    try {
+      const response = await axios.get(
+        `http://65.0.168.34/search/${searchCriteria}/${searchValue}`
+      );
+      console.log(response.data);
+      setBooks(response.data.items || []);
+    } catch (error) {
+      console.error("Error searching books:", error);
+    }
   };
 
   useEffect(() => {
@@ -51,10 +60,9 @@ export const DashBoardHome = () => {
                   color: "var(--text)",
                 }}
               >
-                <option value="title">Book Name</option>
-                <option value="id">Book ID</option>
-                <option value="author">Author</option>
-                <option value="genre">Genre</option>
+                <option value="bookname">Book Name</option>
+                <option value="bookAuthor">Author</option>
+                <option value="booksByGenre">Genre</option>
               </select>
             </div>
             <div className="col-span-4">
