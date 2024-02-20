@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
+import axios from "axios";
 import {
   auth,
   emailprovider,
   signinprovider,
   gmailprovider,
+  popup,
 } from "../../firebase.config";
 import PropTypes from "prop-types";
 
@@ -21,19 +23,24 @@ function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  function signup(email, password, displayName) {
-    return emailprovider(email, password).then((userCredential) => {
+  async function signup(email, password, displayName) {
+    try {
+      // Create user with email and password
+      const userCredential = await emailprovider(email, password);
       const updatedUser = { ...userCredential.user, displayName };
+      await axios.post(`http://65.0.168.34/register/${email}`);
       return updatedUser;
-    });
+    } catch (error) {
+      console.error("Error during signup:", error);
+      throw error;
+    }
   }
-
   function login(email, password) {
     return signinprovider(email, password);
   }
 
   function loginWithGoogle() {
-    return auth.signInWithPopup(gmailprovider);
+    return popup(gmailprovider);
   }
 
   function logout() {

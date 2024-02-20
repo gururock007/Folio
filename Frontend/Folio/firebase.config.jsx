@@ -4,6 +4,7 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithPopup,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -22,4 +23,5 @@ const emailprovider = (email, password) =>
 const signinprovider = (email, password) =>
   signInWithEmailAndPassword(auth, email, password);
 const gmailprovider = new GoogleAuthProvider();
-export { auth, emailprovider, signinprovider, gmailprovider };
+const popup = (gmailprovider) => signInWithPopup(auth, gmailprovider);
+export { auth, emailprovider, signinprovider, gmailprovider, popup };
