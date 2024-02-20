@@ -4,7 +4,6 @@ import { BookCard } from "./BookCard";
 import noimage from "/images/no-image.jpg";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-
 export const DashBoardHome = () => {
   const [books, setBooks] = useState([]);
   const [result, setResult] = useState([]);
