@@ -7,11 +7,11 @@ import { DashBoard } from "./DashBoard";
 export default function Home() {
   return (
     <div>
-      {/* <Header />
+      <Header />
       <Hero />
       <PageInfo />
-      <Footer /> */}
-      <DashBoard />
+      <Footer />
+      {/* <DashBoard /> */}
     </div>
   );
 }

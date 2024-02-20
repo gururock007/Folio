@@ -1,11 +1,12 @@
 import { NavButton } from "./NavButton";
 import { SecondaryButton } from "./SecondaryButton";
-
+import  hero_img  from "/images/Hero.png"
 export const Hero = () => {
   return (
     <>
       <div className=" text-text pt-44">
         <div className=" container">
+          <img className=" absolute w-5/12 right-1 top-20" src={hero_img} alt="" />
           <div className=" grid grid-cols-3 pb-12 pt-4">
             <div className=" col-span-2 pb-4 mx-16 font-semibold">
               <div className=" text-6xl font-Poppins ">
