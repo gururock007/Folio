@@ -95,11 +95,6 @@ export const BookInfo = ({ book }) => {
             </button>
           </div>
         </div>
-        <div className="col-span-1">
-          <button className="bg-primary text-text p-3 rounded-lg">
-            Add to List
-          </button>
-        </div>
       </div>
       <div className="ms-48 text-2xl">
         by{" "}
