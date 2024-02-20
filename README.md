@@ -102,17 +102,3 @@ The backend of this application can be deployed to an AWS EC2 instance, while th
 
 7. Deploy the built frontend to any service providers if you want.
 8. Access your deployed application via the provided URL.
-
-
-## Screenshots
-
-![](https://github.com/PragatheeshM/Files/blob/main/GIF1.gif)
-![](https://github.com/PragatheeshM/Files/blob/main/GIF2.gif)
-![](https://github.com/PragatheeshM/Files/blob/main/GIF3.gif)
-![](https://github.com/PragatheeshM/Files/blob/main/GIF4.gif)
-![](https://github.com/PragatheeshM/Files/blob/main/GIF5.gif)
-![](https://github.com/PragatheeshM/Files/blob/main/GIF6.gif)
-![](https://github.com/PragatheeshM/Files/blob/main/GIF7.gif)
-![](https://github.com/PragatheeshM/Files/blob/main/GIF8.gif)
-![](https://github.com/PragatheeshM/Files/blob/main/GIF9.gif)
-![](https://github.com/PragatheeshM/Files/blob/main/GIF10.gif)
