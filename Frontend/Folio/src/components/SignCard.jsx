@@ -32,7 +32,7 @@ export const SignCard = () => {
   };
 
   const handleSignUp = async (event) => {
-    event.preventDefault;
+    event.preventDefault();
     try {
       if (!validateEmail(email)) {
         setError("Please enter a valid email address.");
@@ -56,7 +56,7 @@ export const SignCard = () => {
 
   return (
     <div className="px-32 py-16 font-Poppins">
-      <div className="grid grid-cols-5 bg-opacity-10 shadow-lg backdrop-blur-lg p-6 pt-16 rounded-3xl">
+      <div className="grid grid-cols-5 bg-opacity-10 shadow-md shadow-secondary p-6 pt-16 rounded-3xl">
         <div className="col-span-3">
           <img src={sign} alt="Illustration" className="w-full h-auto" />
         </div>
@@ -105,13 +105,13 @@ export const SignCard = () => {
             onChange={handleConfirmPasswordChange}
             className="w-full p-3 mb-4 rounded-md bg-inputfeild placeholder:text-text text-text"
           />
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-5">
             <div className="col-span-1 self-center text-center mt-4">
               <button
                 className="hover:bg-secondary cursor-pointer 
-              text-primary px-4 py-2 transition 
+              text-primary w-full px-3 py-3 transition
               duration-300 ease-in-out hover:text-background 
-              rounded-md self-center"
+              rounded-md self-center border border-accent"
                 onClick={handleSignUp}
               >
                 Sign Up{" "}

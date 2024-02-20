@@ -26,7 +26,7 @@ export const LoginCard = () => {
   };
 
   const handleLogin = async (event) => {
-    event.preventDefault;
+    event.preventDefault();
     try {
       if (!validateEmail(email)) {
         setError("Please enter a valid email address.");
@@ -40,7 +40,7 @@ export const LoginCard = () => {
   };
 
   const handleLoginWithGoogle = async (event) => {
-    event.preventDefault;
+    event.preventDefault();
     try {
       await loginWithGoogle();
       navigate("/dashboard");
@@ -51,7 +51,7 @@ export const LoginCard = () => {
 
   return (
     <div className=" px-32 py-16 font-Poppins">
-      <div className="grid grid-cols-5  bg-opacity-10 shadow-lg backdrop-blur-lg  p-6 pt-16 rounded-3xl">
+      <div className="grid grid-cols-5  bg-opacity-10 shadow-md shadow-secondary p-6 pt-16 rounded-3xl">
         <div className=" col-span-3">
           <img src={loginimg} alt="Illustration" className=" w-2/3 h-auto" />
         </div>
@@ -83,23 +83,23 @@ export const LoginCard = () => {
               <img
                 src={eyeClosedIcon}
                 alt="Hide"
-                className="absolute -right-0 -translate-y-[3.3rem] -translate-x-20 transform cursor-pointer"
+                className="absolute -right-0 -translate-y-[3.3rem] -translate-x-52 transform cursor-pointer"
               />
             ) : (
               <img
                 src={eyeIcon}
                 alt="Show"
-                className="absolute -right-0 -translate-y-[3.3rem] -translate-x-20 transform cursor-pointer"
+                className="absolute -right-0 -translate-y-[3.3rem] -translate-x-52 transform cursor-pointer"
               />
             )}
           </div>
-          <div className=" grid grid-cols-2 gap-2">
+          <div className=" grid grid-cols-2 gap-5">
             <div className=" col-span-1 self-center text-center mt-4">
               <button
                 className="hover:bg-secondary cursor-pointer 
-              text-primary px-4 py-2 transition 
+              text-primary w-full px-3 py-3 transition 
               duration-300 ease-in-out hover:text-background 
-              rounded-md self-center"
+              rounded-md self-center border border-accent"
                 onClick={handleLogin}
               >
                 Login
