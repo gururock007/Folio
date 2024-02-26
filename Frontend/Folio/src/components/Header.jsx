@@ -40,28 +40,30 @@ const Header = () => {
             <img src={isDark ? dark : light} alt="Logo" className="h-12 w-12" />
             <span className="text-text text-3xl font-bold ml-2">Folio</span>
           </a>
-          <ul className=" grid grid-cols-10 gap-2">
+          <ul className=" grid grid-cols-8 gap-2">
             <li className=" col-span-2 text-center">
               <NavButton text={"Home"} location={""} />
             </li>
-            <li className=" col-span-2 text-center">
-              <NavButton text={"Lists"} location={"lists"} />
-            </li>
             {currentUser ? (
-              <li className="col-span-2 text-center">
-                <button
-                  className="
+              <>
+                <li className=" col-span-2 text-center">
+                  <NavButton text={"Lists"} location={"lists"} />
+                </li>
+                <li className="col-span-2 text-center">
+                  <button
+                    className="
               hover:bg-secondary cursor-pointer 
               text-primary px-4 py-2 transition 
               duration-300 ease-in-out hover:text-background 
               rounded-md self-center font-Poppins"
-                  onClick={() => logout()}
-                >
-                  Sign Out
-                </button>
-              </li>
+                    onClick={() => logout()}
+                  >
+                    Sign Out
+                  </button>
+                </li>
+              </>
             ) : (
-              <li className="col-span-2 text-center">
+              <li className="col-span-4 text-center">
                 <SecondaryButton text={"Login"} location={"login"} />
               </li>
             )}

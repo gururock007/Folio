@@ -32,12 +32,6 @@ const Footer = () => {
           </div>
           <div
             className="cursor-pointer text-sub hover:opacity-60"
-            onClick={() => navigate("/lists")}
-          >
-            Lists
-          </div>
-          <div
-            className="cursor-pointer text-sub hover:opacity-60"
             onClick={() => navigate("/signup")}
           >
             Sign Up

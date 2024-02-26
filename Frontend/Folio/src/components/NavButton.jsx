@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export const NavButton = ({ text, location }) => {
   const navigate = useNavigate();
@@ -16,4 +17,8 @@ export const NavButton = ({ text, location }) => {
       </div>
     </div>
   );
+};
+NavButton.propTypes = {
+  text: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
 };

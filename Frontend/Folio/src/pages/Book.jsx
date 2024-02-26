@@ -43,8 +43,10 @@ const Book = () => {
       {book ? (
         <>
           <Header />
-          <BookInfo book={book} />
-          <Reviews slug={slug} reviews={reviews} />
+          <div className="m-20 border-4 border-secondary">
+            <BookInfo book={book} />
+            <Reviews slug={slug} reviews={reviews} />
+          </div>
           <Footer />
         </>
       ) : (

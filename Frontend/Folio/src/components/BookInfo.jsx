@@ -13,7 +13,13 @@ export const BookInfo = ({ book }) => {
     localStorage.getItem("theme") === "dark"
   );
   const [averageRating, setAverageRating] = useState(null);
-
+  const removeHtmlTags = (html) => {
+    if (html === undefined) {
+      return "";
+    }
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent || "";
+  };
   useEffect(() => {
     const checkLikedStatus = async () => {
       try {
@@ -28,7 +34,7 @@ export const BookInfo = ({ book }) => {
     };
 
     checkLikedStatus();
-  }, [book.id]);
+  }, [book.id, currentUser.email]);
 
   useEffect(() => {
     const fetchAverageRating = async () => {
@@ -71,46 +77,61 @@ export const BookInfo = ({ book }) => {
   }, []);
 
   return (
-    <div>
-      <div className="grid grid-cols-8">
-        <div className="col-span-3">
-          <div className="text-5xl font-semibold">
-            {book?.volumeInfo.title || "Title Placeholder"}
+    <div className="m-4 border-b-4 border-secondary p-12">
+      <div className="grid grid-cols-1 lg:grid-cols-8 gap-10">
+        <div className="col-span-1 lg:col-span-3">
+          <div className="text-4xl font-semibold mb-4 underline">
+            {book?.volumeInfo.title || "No title available"}
+          </div>
+          <div className="text-xl font-semibold">
+            by{" "}
+            {book?.volumeInfo.authors
+              ? book?.volumeInfo.authors.join(", ")
+              : "Unknown Author"}
+          </div>
+          <div className="mt-5">
+            <div className="flex items-center space-x-2">
+              <div className="flex items-center">
+                Ratings: {averageRating || "No reviews yet"}
+              </div>
+            </div>
+            <div className="flex items-center space-x-2 mt-5">
+              <div className="w-10">
+                <button
+                  className={`flex items-center space-x-2 ${
+                    liked ? "text-red-500" : "text-gray-500"
+                  }`}
+                  onClick={changeLikeHandle}
+                >
+                  {liked ? (
+                    <img src={heart} alt="Liked" className="w-6 h-6" />
+                  ) : isDark ? (
+                    <img
+                      src={heart_outline_white}
+                      alt="Like"
+                      className="w-6 h-6"
+                    />
+                  ) : (
+                    <img src={heart_outline} alt="Like" className="w-6 h-6" />
+                  )}
+                  <span>{liked ? "Liked" : "Like"}</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="col-span-2 self-center flex gap-2">
-          <div className="flex">
-            Ratings: {averageRating || "No reviews yet"}
-          </div>
-        </div>
-        <div className="col-span-2 self-center flex gap-2">
-          <div className="self-center w-10">
-            <button onClick={changeLikeHandle}>
-              {liked ? (
-                <img src={heart} alt="Liked" />
-              ) : isDark ? (
-                <img src={heart_outline_white} alt="Like" />
-              ) : (
-                <img src={heart_outline} alt="Like" />
-              )}
-            </button>
-          </div>
+        <div className="col-span-1 lg:col-span-5">
+          <img
+            src={book.volumeInfo.imageLinks?.thumbnail || noimage}
+            alt={book?.volumeInfo.title || "Title Placeholder"}
+            className=" w-full h-auto object-cover rounded-lg"
+          />
         </div>
       </div>
-      <div className="ms-48 text-2xl">
-        by{" "}
-        {book?.volumeInfo.authors
-          ? book?.volumeInfo.authors.join(", ")
-          : "Unknown Author"}
-      </div>
-      <div className="grid grid-cols-3 p-20">
-        <div className="col-span-1">
-          <img src={book.volumeInfo.imageLinks?.thumbnail || noimage} />
-        </div>
-        <div className="col-span-2">
-          <div className="pb-5 text-xl font-semibold">Description</div>
-          {book?.volumeInfo.description || "Description Placeholder"}
-        </div>
+      <div className="mt-10 text-lg font-semibold">Description</div>
+      <div className="text-justify">
+        {removeHtmlTags(book?.volumeInfo.description) ||
+          "No description available"}
       </div>
     </div>
   );
