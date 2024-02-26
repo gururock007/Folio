@@ -1,17 +1,20 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BookCard } from "./BookCard";
 import noimage from "/images/no-image.jpg";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { ListComponent } from "./ListComponent";
+
 export const DashBoardHome = () => {
-  const [books, setBooks] = useState([]);
   const [result, setResult] = useState([]);
   const [recomm, setRecomm] = useState([]);
-  const [recommBook, setRecommBook] = useState([]);
+  const [recommBooks1, setRecommBooks1] = useState([]);
+  const [recommBooks2, setRecommBooks2] = useState([]);
   const { currentUser } = useAuth();
   const [searchCriteria, setSearchCriteria] = useState("title");
   const [searchValue, setSearchValue] = useState("");
+
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
   };
@@ -23,7 +26,7 @@ export const DashBoardHome = () => {
   const handleSearchSubmit = async () => {
     try {
       const response = await axios.get(
-        `http://65.0.168.34/search/${searchCriteria}/${searchValue}`
+        `http://localhost/search/${searchCriteria}/${searchValue}`
       );
       console.log(response.data);
       setResult(response.data.items || []);
@@ -34,26 +37,10 @@ export const DashBoardHome = () => {
   };
 
   useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        const response = await axios.get(
-          "http://65.0.168.34/search/booksByGenre/love"
-        );
-        console.log(response.data);
-        setBooks(response.data.items || []);
-      } catch (error) {
-        console.error("Error fetching books:", error);
-      }
-    };
-
-    fetchBooks();
-  }, []);
-
-  useEffect(() => {
     const fetchRecomm = async () => {
       try {
         const response = await axios.get(
-          `http://65.0.168.34/getuserpreference/${currentUser.email}`
+          `http://localhost/getuserpreference/${currentUser.email}`
         );
         console.log(response.data);
         setRecomm(response.data || []);
@@ -61,8 +48,9 @@ export const DashBoardHome = () => {
         console.error("Error fetching recommendations:", error);
       }
     };
+
     fetchRecomm();
-  }, []);
+  }, [currentUser.email]);
 
   useEffect(() => {
     const fetchRecommBooks = async () => {
@@ -70,10 +58,16 @@ export const DashBoardHome = () => {
         for (let preference in recomm) {
           const genre = recomm[preference].genre;
           const response = await axios.get(
-            `http://65.0.168.34/search/booksByGenre/${genre}`
+            `http://localhost/search/booksByGenre/${genre}`
           );
           console.log(response.data);
-          recommBook((prevBooks) => [...prevBooks, ...(response.data.items || [])]);
+
+          // Store recommendations separately based on preference
+          if (preference === "preference1") {
+            setRecommBooks1(response.data.items || []);
+          } else if (preference === "preference2") {
+            setRecommBooks2(response.data.items || []);
+          }
         }
       } catch (error) {
         console.error("Error fetching recommendation books:", error);
@@ -100,7 +94,7 @@ export const DashBoardHome = () => {
                   color: "var(--text)",
                 }}
               >
-                <option value="bookname">Book Name</option>
+                <option value="title">Book Title</option>
                 <option value="bookAuthor">Author</option>
                 <option value="booksByGenre">Genre</option>
               </select>
@@ -119,12 +113,12 @@ export const DashBoardHome = () => {
             </div>
           </div>
         </div>
-        {result.length !== 0 && (
+
+        {result.length > 0 && (
           <div className="pt-52 px-24">
-            <div className="text-text font-medium p-5">Result</div>
+            <div className="text-text font-medium p-5">Search Results</div>
             <div className="flex overflow-x-scroll py-14">
-              {result.length !== 0 &&
-              result.map((resu) => (
+              {result.map((resu) => (
                 <Link to={`/book/${resu.id}`} key={resu.id}>
                   <BookCard
                     key={resu.id}
@@ -135,21 +129,19 @@ export const DashBoardHome = () => {
                         : "Unknown Author"
                     }
                     liked={Math.floor(Math.random() * 100)}
-                    imageSrc={
-                      resu.volumeInfo.imageLinks?.thumbnail || noimage
-                    }
+                    imageSrc={resu.volumeInfo.imageLinks?.thumbnail || noimage}
                   />
                 </Link>
               ))}
             </div>
           </div>
         )}
-        {recommBook.length !== 0 && (
+
+        {recommBooks1.length > 0 && (
           <div className="pt-52 px-24">
-            <div className="text-text font-medium p-5">Result</div>
+            <div className="text-text font-medium p-5">Preferred Genre 1</div>
             <div className="flex overflow-x-scroll py-14">
-              {recommBook.length !== 0 &&
-              recommBook.map((re) => (
+              {recommBooks1.map((re) => (
                 <Link to={`/book/${re.id}`} key={re.id}>
                   <BookCard
                     key={re.id}
@@ -160,35 +152,30 @@ export const DashBoardHome = () => {
                         : "Unknown Author"
                     }
                     liked={Math.floor(Math.random() * 100)}
-                    imageSrc={
-                      re.volumeInfo.imageLinks?.thumbnail || noimage
-                    }
+                    imageSrc={re.volumeInfo.imageLinks?.thumbnail || noimage}
                   />
                 </Link>
               ))}
             </div>
           </div>
         )}
-        {books.length !== 0 && (
+
+        {recommBooks2.length > 0 && (
           <div className="pt-52 px-24">
-            <div className="text-text font-medium p-5">
-              Most People Liked
-            </div>
+            <div className="text-text font-medium p-5">Preferred Genre 2 </div>
             <div className="flex overflow-x-scroll py-14">
-              {books.map((book) => (
-                <Link to={`/book/${book.id}`} key={book.id}>
+              {recommBooks2.map((re) => (
+                <Link to={`/book/${re.id}`} key={re.id}>
                   <BookCard
-                    key={book.id}
-                    title={book.volumeInfo.title}
+                    key={re.id}
+                    title={re.volumeInfo.title}
                     author={
-                      book.volumeInfo.authors
-                        ? book.volumeInfo.authors.join(", ")
+                      re.volumeInfo.authors
+                        ? re.volumeInfo.authors.join(", ")
                         : "Unknown Author"
                     }
                     liked={Math.floor(Math.random() * 100)}
-                    imageSrc={
-                      book.volumeInfo.imageLinks?.thumbnail || noimage
-                    }
+                    imageSrc={re.volumeInfo.imageLinks?.thumbnail || noimage}
                   />
                 </Link>
               ))}

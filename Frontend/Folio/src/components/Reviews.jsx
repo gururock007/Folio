@@ -11,8 +11,9 @@ export const Reviews = ({ slug, reviews }) => {
       const bookId = slug;
       console.log(bookId, newReview);
       await axios.post(
-        `http://65.0.168.34/review/createReview/${bookId}/${newReview}`
-      );``
+        `http://localhost/review/createReview/${bookId}/${newReview}`
+      );
+      ``;
       window.location.reload();
     } catch (error) {
       console.error("Error submitting review:", error);

@@ -18,7 +18,7 @@ export const BookInfo = ({ book }) => {
     const checkLikedStatus = async () => {
       try {
         const response = await fetch(
-          `http://65.0.168.34/likedbyUser/${currentUser.email}/${book.id}`
+          `http://localhost/likedbyUser/${currentUser.email}/${book.id}`
         );
         const data = await response.json();
         setLiked(data.liked);
@@ -34,7 +34,7 @@ export const BookInfo = ({ book }) => {
     const fetchAverageRating = async () => {
       try {
         const response = await fetch(
-          `http://65.0.168.34/review/getaveragereview/${book.id}`
+          `http://localhost/review/getaveragereview/${book.id}`
         );
         const data = await response.json();
         setAverageRating(data.averagePositiveScore);
@@ -50,11 +50,12 @@ export const BookInfo = ({ book }) => {
       setLiked((prevVal) => !prevVal);
       const action = liked ? "unlikeit" : "likeit";
       await fetch(
-        `http://65.0.168.34/likedbyUser/${action}/${currentUser.email}/${book.id}`,
+        `http://localhost/likedbyUser/${action}/${currentUser.email}/${book.id}`,
         {
           method: "GET",
         }
       );
+      console.log("Like status updated successfully");
     } catch (error) {
       console.error("Error updating like status:", error);
     }

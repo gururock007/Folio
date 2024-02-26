@@ -8,15 +8,15 @@ export const ListPage = () => {
     <div>
       <Header />
       <ListComponent
-        url={"http://65.0.168.34/search/booksByGenre/love"}
+        url={"http://localhost/search/booksByGenre/love"}
         gener={"Love"}
       />
       <ListComponent
-        url={"http://65.0.168.34/search/booksByGenre/crime"}
+        url={"http://localhost/search/booksByGenre/crime"}
         gener={"Crime"}
       />
       <ListComponent
-        url={"http://65.0.168.34/search/booksByGenre/horror"}
+        url={"http://localhost/search/booksByGenre/horror"}
         gener={"Horror"}
       />
       <Footer />
