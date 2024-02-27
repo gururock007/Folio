@@ -15,7 +15,7 @@ const Book = () => {
     const fetchBook = async () => {
       try {
         const bookResponse = await axios.get(
-          `http://65.0.168.34/search/bookById/${slug}`
+          `http://localhost/search/bookById/${slug}`
         );
         setBook(bookResponse.data || {});
       } catch (error) {
@@ -26,7 +26,7 @@ const Book = () => {
     const fetchReviews = async () => {
       try {
         const reviewsResponse = await axios.get(
-          `http://65.0.168.34/review/getReviews/${slug}`
+          `http://localhost/review/getReviews/${slug}`
         );
         setReviews(reviewsResponse.data || []);
       } catch (error) {
@@ -43,8 +43,10 @@ const Book = () => {
       {book ? (
         <>
           <Header />
-          <BookInfo book={book} />
-          <Reviews slug={slug} reviews={reviews} />
+          <div className="m-20 border-4 border-secondary">
+            <BookInfo book={book} />
+            <Reviews slug={slug} reviews={reviews} />
+          </div>
           <Footer />
         </>
       ) : (

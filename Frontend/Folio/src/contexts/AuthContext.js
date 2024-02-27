@@ -28,7 +28,7 @@ function AuthProvider({ children }) {
       // Create user with email and password
       const userCredential = await emailprovider(email, password);
       const updatedUser = { ...userCredential.user, displayName };
-      await axios.post(`http://65.0.168.34/register/${email}`);
+      await axios.post(`http://localhost/register/${email}`);
       return updatedUser;
     } catch (error) {
       console.error("Error during signup:", error);

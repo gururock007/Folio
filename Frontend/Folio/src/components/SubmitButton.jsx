@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 export const SubmitButton = ({ text }) => {
   return (
     <div>
@@ -12,4 +13,7 @@ export const SubmitButton = ({ text }) => {
       </div>
     </div>
   );
+};
+SubmitButton.propTypes = {
+  text: PropTypes.string.isRequired,
 };

@@ -1,25 +1,21 @@
-export const BookCard = ({ title, author, liked, imageSrc, onClick }) => {
-  const getLikedListClass = () => {
-    const red = Math.min(255, Math.round((100 - liked) * 2.55)); // Red from 255 to 0
-    const green = Math.min(255, Math.round(liked * 2.55)); // Green from 0 to 255
-    return `bg-rgb(${red}, ${green}, 0)`;
-  };
+import PropTypes from "prop-types";
 
+export const BookCard = ({ title, author, liked, imageSrc, onClick }) => {
   return (
     <div>
       <div
         className={`group relative w-48 h-64 rounded-lg transition duration-200 ease-in-out hover:shadow-md hover:scale-110 hover:-translate-y-6 overflow-hidden`}
       >
         <div
-          className={`absolute right-0 w-12 h-12 rounded-full z-10 ${getLikedListClass()}`}
+          className={`absolute right-0 top-0 w-12 h-12 rounded-full z-10 flex items-center justify-center bg-secondary`}
         >
-          <div className="text-center mt-3 ms-1">{liked}%</div>
+          <div className="text-center text-text font-semibold">{liked}%</div>
         </div>
         <div className="p-4">
           <div className="grid place-items-center h-full w-full">
             <img
               src={imageSrc}
-              className="w-full rounded-xl p-2 object-cover"
+              className=" w-48 h-64 rounded-xl p-2 object-cover"
               alt=""
             />
           </div>
@@ -40,4 +36,12 @@ export const BookCard = ({ title, author, liked, imageSrc, onClick }) => {
       </div>
     </div>
   );
+};
+
+BookCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  liked: PropTypes.number.isRequired,
+  imageSrc: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
