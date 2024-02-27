@@ -79,7 +79,7 @@ export const BookInfo = ({ book }) => {
   return (
     <div className="m-4 border-b-4 border-secondary p-12">
       <div className="grid grid-cols-1 lg:grid-cols-8 gap-10">
-        <div className="col-span-1 lg:col-span-3">
+        <div className="col-span-1 lg:col-span-6">
           <div className="text-4xl font-semibold mb-4 underline">
             {book?.volumeInfo.title || "No title available"}
           </div>
@@ -120,10 +120,10 @@ export const BookInfo = ({ book }) => {
             </div>
           </div>
         </div>
-        <div className="col-span-1 lg:col-span-5">
+        <div className="col-span-1 lg:col-span-2">
           <img
             src={book.volumeInfo.imageLinks?.thumbnail || noimage}
-            alt={book?.volumeInfo.title || "Title Placeholder"}
+            alt={book?.volumeInfo.title || "No title available"}
             className=" w-full h-auto object-cover rounded-lg"
           />
         </div>

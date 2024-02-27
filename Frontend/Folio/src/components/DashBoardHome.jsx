@@ -127,9 +127,7 @@ export const DashBoardHome = () => {
                     url={`http://localhost/search/booksByGenre/${recomm[preference].genre}`}
                     gener={recomm[preference].genre}
                   />
-                  {index < array.length - 1 && (
-                    <div className="border-b-4 border-secondary my-4"></div>
-                  )}
+                  {index < array.length - 1 && <div className="my-4"></div>}
                 </div>
               ))
             )}

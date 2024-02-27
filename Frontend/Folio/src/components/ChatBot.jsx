@@ -5,6 +5,7 @@ const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState("");
+  const [isBotTyping, setIsBotTyping] = useState(false);
   const chatbotRef = useRef(null);
   const chatContainerRef = useRef(null);
 
@@ -18,6 +19,8 @@ const ChatBot = () => {
       const newUserMessage = { text: messageText, sender: "user" };
       setMessages([...messages, newUserMessage]); // Add user's message to the state
 
+      setIsBotTyping(true); // Start the typing indicator
+
       axios
         .get(`http://localhost/bookmyUserQuery/${messageText}`)
         .then((response) => {
@@ -28,6 +31,9 @@ const ChatBot = () => {
         })
         .catch((error) => {
           console.error("Error sending request:", error);
+        })
+        .finally(() => {
+          setIsBotTyping(false); // Stop the typing indicator
         });
 
       setInputText("");
@@ -62,16 +68,23 @@ const ChatBot = () => {
   return (
     <div className="fixed bottom-0 right-0 mb-8 mr-8 z-50" ref={chatbotRef}>
       <button
-        className=" bg-primary text-text w-20 h-20 rounded-full shadow-lg hover:bg-accent"
+        className="bg-secondary text-text w-20 h-20 rounded-full shadow-lg hover:bg-accent"
         onClick={toggleChatbot}
       >
-        Chat AI
+        AI Chatbot
       </button>
       {isOpen && (
         <div className="absolute bottom-0 right-0 bg-back dark:bg-white shadow-lg rounded-lg p-4 w-96">
+          <div className="flex justify-between items-center mb-4">
+            <div className="text-lg font-semibold">AI Chatbot</div>
+            {isBotTyping && (
+              <div className="text-gray-500 animate-ellipsis">...</div>
+            )}
+          </div>
           <div className="overflow-y-auto h-[600px]" ref={chatContainerRef}>
             {messages.map((message, index) => (
               <div
+                key={index}
                 className={
                   message.sender === "user" ? " text-end" : "text-start"
                 }
@@ -80,8 +93,8 @@ const ChatBot = () => {
                   key={index}
                   className={`text-sm p-2 rounded-lg ${
                     message.sender === "user"
-                      ? "bg-blue-500 mt-3 text-white self-start inline-block "
-                      : "bg-gray-200 mt-3 text-black self-start "
+                      ? "bg-blue-500 mt-3 text-white self-start inline-block"
+                      : "bg-gray-200 mt-3 text-black self-start"
                   }`}
                 >
                   {message.text}
