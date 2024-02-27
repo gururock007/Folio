@@ -1,6 +1,8 @@
-# FOLIO WEB APP
+# FOLIO
 
-Welcome to the Folio Web App repository! This web application provides users with personalized book recommendations based on their preferences, allows them to search for books by various criteria, and facilitates the creation of custom reading lists. The app also includes a chat bot feature for interactive book recommendations and sentiment analysis of user reviews.
+Welcome to the Folio repository! This web application provides users with personalized book recommendations based on their preferences, allows them to search for books by various criteria, and facilitates the creation of custom reading lists. The app also includes a chat bot feature for interactive book recommendations and sentiment analysis of user reviews.
+
+Note: This was made in 24 hours for Codechef: Cook Off Hackathon
 
 ## Table of Contents
 
@@ -10,6 +12,7 @@ Welcome to the Folio Web App repository! This web application provides users wit
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
 - [Deployment](#deployment)
+- [Contributors](#contributors)
 
 ## Basic Information
 
@@ -31,13 +34,18 @@ This web application is designed to help users discover new books based on their
 
 1. **Clone the repository:**
 
-```git clone https://github.com/yourusername/book-recommendation-app.git```
+```git clone https://github.com/d-man1212/Folio.git```
 
-3. **Navigate to the project directory:**
+2. **Navigate to the project directory:**
 
-```cd book-recommendation-app```
+```cd Folio```
 
-3. **Install dependencies:**
+2. **Navigate to the Frontend and Backend directories:**
+
+```cd Folio/Frontend```
+```cd Folio/Backend```
+
+4. **Install dependencies:**
 
 ```npm install```
 
@@ -56,7 +64,7 @@ This web application is designed to help users discover new books based on their
 
 ```npm run dev```
 
-5. **Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to access the application.**
+5. **Open your browser and navigate to [http://localhost:5173](http://localhost:5173) to access the application.**
 
 ## API Endpoints
 
@@ -102,3 +110,14 @@ The backend of this application can be deployed to an AWS EC2 instance, while th
 
 7. Deploy the built frontend to any service providers if you want.
 8. Access your deployed application via the provided URL.
+
+## Contributors
+
+Thanks to the following contributors for their valuable contributions to this project:
+
+- [Gurushik (Gururock007)](https://github.com/gururock007)
+- [Dharshan S (d-man1212)](https://github.com/d-man1212)
+- [Surya D (surya-d007)](https://github.com/surya-d007)
+- [Pragatheesh M (PragatheeshM)](https://github.com/PragatheeshM)
+
+Feel free to check out their profiles and contributions!
