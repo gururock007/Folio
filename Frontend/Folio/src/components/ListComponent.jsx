@@ -34,8 +34,8 @@ export const ListComponent = ({ url, gener }) => {
                   ? book.volumeInfo.authors.join(", ")
                   : "Unknown Author"
               }
-              liked={Math.floor(Math.random() * 100)} // Example: Random liked value
-              imageSrc={book.volumeInfo.imageLinks?.thumbnail || noimage} // Use default image URL if thumbnail not available
+              liked={Math.floor(Math.random() * 100)}
+              imageSrc={book.volumeInfo.imageLinks?.thumbnail || noimage}
             />
           </Link>
         ))}

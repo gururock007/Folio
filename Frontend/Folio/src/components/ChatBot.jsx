@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 const ChatBot = () => {
@@ -17,9 +17,9 @@ const ChatBot = () => {
     const messageText = inputText.trim();
     if (messageText !== "") {
       const newUserMessage = { text: messageText, sender: "user" };
-      setMessages([...messages, newUserMessage]); // Add user's message to the state
+      setMessages([...messages, newUserMessage]);
 
-      setIsBotTyping(true); // Start the typing indicator
+      setIsBotTyping(true);
 
       axios
         .get(`http://localhost/bookmyUserQuery/${messageText}`)
@@ -27,13 +27,13 @@ const ChatBot = () => {
           console.log(response.data.generatedResponse);
           const aiResponse = response.data.generatedResponse;
           const newBotMessage = { text: aiResponse, sender: "bot" };
-          setMessages((prevMessages) => [...prevMessages, newBotMessage]); // Add AI's response to the state
+          setMessages((prevMessages) => [...prevMessages, newBotMessage]);
         })
         .catch((error) => {
           console.error("Error sending request:", error);
         })
         .finally(() => {
-          setIsBotTyping(false); // Stop the typing indicator
+          setIsBotTyping(false);
         });
 
       setInputText("");
@@ -58,12 +58,11 @@ const ChatBot = () => {
   }, []);
 
   useEffect(() => {
-    // Scroll to the bottom of the chat container
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop =
         chatContainerRef.current.scrollHeight;
     }
-  }, [messages]); // Trigger scroll effect whenever messages update
+  }, [messages]);
 
   return (
     <div className="fixed bottom-0 right-0 mb-8 mr-8 z-50" ref={chatbotRef}>

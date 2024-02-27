@@ -25,7 +25,6 @@ function AuthProvider({ children }) {
 
   async function signup(email, password, displayName) {
     try {
-      // Create user with email and password
       const userCredential = await emailprovider(email, password);
       const updatedUser = { ...userCredential.user, displayName };
       await axios.post(`http://localhost/register/${email}`);
